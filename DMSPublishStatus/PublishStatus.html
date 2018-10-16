@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Technical Department - THAI Airways International : DocSurf Publish Status">
+    <meta name="author" content="Pranorm Wattanasuwan" />
+    <title>Technical Department: DocSurf Publish Status</title>
+    <link rel="icon" href="images/favicon.png" />
+    <link href="framework/jqwidgets/styles/jqx.base.css" rel="stylesheet" />
+    <link href="framework/jqwidgets/styles/jqx.web.css" rel="stylesheet" />
+    <link href="Framework/css/jquery-ui.css" rel="stylesheet" />
+    <link href="framework/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Framework/font-awesome.min.css" rel="stylesheet" />
+    <link href="framework/css/all.css" rel="stylesheet" />
+    <link href="Framework/css/toastr.min.css" rel="stylesheet" />
+    <style type="text/css">
+        @font-face {
+            font-family: appHeaderFont;
+            src: url("Framework/fonts/ostrich-rounded.woff");
+            font-weight: bold;
+        }
+
+        .grad-background {
+            width: 100%;
+            height: 100vh;
+            font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: linear-gradient(to right, #2c3e50, #bdc3c7);
+            background: -webkit-linear-gradient(left, #2c3e50, #bdc3c7);
+            background: -moz-linear-gradient(left, #2c3e50, #bdc3c7);
+
+        }
+
+        .logo-center {
+            position: fixed;
+            top: 2%;
+            left: 2%;
+            width: 150px;
+            height: 80px;
+            transform: translate(8px, 5px);
+        }
+
+        .under-logo {
+            position: fixed;
+            top: 9%;
+            left: 2%;
+            width: 95%;
+            height: 85vh;           
+            transform: translate(5px, 5px);
+        }
+
+        .background-img {
+            opacity: 0.15;
+            position: fixed;
+            top: 50%;
+            left: 80%;
+            width: 1200px;
+            height: 900px;
+            transform: translate(-400px, -200px);
+        }
+
+        .jqx-grid-header, .jqx-grid-column-header {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 18px;
+            color: indigo;
+            font-weight: 900;
+        }
+
+        .jqx-grid-cell {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+        }
+
+        .jqx-cell {
+            padding-top: 10px;            
+            padding-bottom: 10px;
+        }
+
+        .docName {
+            margin-left: 5px;
+            margin-top: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .docStatus {
+            margin-left: 5px;
+            margin-top: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+        }
+
+        .appHeader {
+            margin-left: 8px;
+            font-family: appHeaderFont;
+            font-size: 48px;
+            font-weight: 800;
+            color: #ffd740;
+            padding: 8px;            
+        }
+    </style>
+</head>
+<body>
+    <div class="grad-background container-fluid">        
+        <div class="logo-center"><img src="images/tgLogo.png" width="200" height="60" /></div>        
+        <div class="row under-logo">            
+            <label class="appHeader">DocSurf Publishing Status</label> <a href="http://bkk-docsurf.dt.thaiairways.co.th/docsurf/servlets/dsd"><i class="fa fa-external-link" style="color:white; font-size: 18px;"></i> </a>
+                                                                       <div class="col-md-12" style="height:95%;overflow: hidden;">
+                                                                           <div id="loading" style="background: rgba(215, 215, 215, 0.40) url('images/Spinner.gif') no-repeat 50% 50% ;position:fixed ; height:100%;width: 100%;display: none;z-index: 9999;"></div>
+                                                                           <div id="result_tab"></div>
+                                                                       </div>
+        </div>
+    </div>
+</body>
+<script src="Framework/jquery-3.1.0.min.js"></script>
+<script src="Framework/jquery-ui.js"></script>
+<script src="Framework/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="Framework/jqwidgets/jqxcore.js"></script>
+<script src="Framework/jqwidgets/jqxdata.js"></script>
+<script src="Framework/jqwidgets/jqxbuttons.js"></script>
+<script src="Framework/jqwidgets/jqxgrid.js"></script>
+<script src="Framework/jqwidgets/jqxmenu.js"></script>
+<script src="Framework/jqwidgets/jqxgrid.filter.js"></script>
+<script src="Framework/jqwidgets/jqxgrid.sort.js"></script>
+<script src="Framework/jqwidgets/jqxgrid.pager.js"></script>
+<script src="Framework/jqwidgets/jqxgrid.selection.js"></script>
+<script src="Framework/jqwidgets/jqxscrollbar.js"></script>
+<script src="Framework/jqwidgets/globalization/globalize.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        document.getElementById('loading').style.display = "block";
+
+        var columnRenderer = function (value) {
+            return '<div style="text-align: center; margin-top: 5px;">' + value + '</div>';
+        }
+
+        var statusRenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
+            if (value) {
+                if (value == 'DB') {
+                    return '<div style="text-align:center;margin-top:16px;"><h6><span class="label label-success docStatus">Distributed (DB)</span></h6></div>';
+                }
+                else if (value == 'RG') {
+                    return '<div style="text-align:center;margin-top:16px;"><h6><span class="label label-warning docStatus">Registered (RG)</span></h6></div>';
+                }
+                else if (value == 'NU') {
+                    return '<div style="text-align:center;margin-top:16px;"><h6><span class="label label-danger docStatus">Not In Used</span></h6></div>';
+                }
+                else {
+                    return '<div style="text-align:center;margin-top:16px;"><h6><span class="label label-default docStatus">' + value + '</span></h6></div>';
+                }
+            }
+            else
+                return '';
+        }
+
+        var docRenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
+            return '<div class="docName">' + value + "</div>";
+        }
+        
+        $.ajax({
+            type: 'POST',
+            url: 'DMSSTatusWS.asmx/listAMM',
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (response) {
+                var jsonData = (response.d) ? $.parseJSON(response.d) : $.parseJSON(response);
+                var source = {
+                    datatype: "json",
+                    datafields: [
+                        { name: 'docNumber' },
+                        { name: 'docType' },
+                        { name: 'docPart' },
+                        { name: 'docVersion' },
+                        { name: 'docStatus' },
+                        { name: 'revisionNo' },
+                        { name: 'revisionDate', type: 'date', format:'dd-MMM-yyyy' },
+                        { name: 'distributionDate', type: 'date', format: 'dd-MMM-yyyy' },
+                        { name: 'publishDate', type: 'date', format: 'dd-MMM-yyyy' }
+                    ],
+                    localdata: jsonData
+                };
+
+                var selectedrow = -1;
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                $('#result_tab').jqxGrid({
+                    width: '100%',
+                    height: '99%',
+                    altrows: true,
+                    source: dataAdapter,
+                    rowsheight: 50,
+                    sortable: true,
+                    columns: [
+                        { datafield: 'docNumber', text: 'Document', width: '27% ', renderer: columnRenderer, cellsrenderer: docRenderer, cellsalign: 'left' },
+                        { datafield: 'docPart', text: 'Part', width: '6%', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'docVersion', text: 'Version', width: '8%', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'docStatus', text: 'Status', width: '15%', renderer: columnRenderer, cellsrenderer: statusRenderer, cellsalign: 'left' },
+                        { datafield: 'revisionNo', text: 'Revision No.', width: '8%', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'revisionDate', text: 'Revision Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'distributionDate', text: 'Distribute Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'publishDate', text: 'Published Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                    ]
+                });
+                document.getElementById('loading').style.display = "none";
+            }
+        });
+    });
+</script>
+</html>
