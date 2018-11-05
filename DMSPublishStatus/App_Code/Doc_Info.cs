@@ -15,6 +15,7 @@ public class Doc_Info
     public String docStatus;
     public String revisionNo;
     public String revisionDate;
+    public String receiveDate;
     public String distributionDate;
     public String publishDate;
 }

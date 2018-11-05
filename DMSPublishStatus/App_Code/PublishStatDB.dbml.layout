@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="PublishStatDB">
+  <DataContextMoniker Name="/PublishStatDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="12f6b983-24d6-451d-927b-1df7dec79f4d" absoluteBounds="1.75, 1.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/PublishStatDBDataContext/SAPDT_DOCSURFHIST" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa1a33a4-fce0-4f88-9212-14c700907848" absoluteBounds="1.7650000000000001, 1.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf51f740-b5a4-4bcc-8514-41374b305690" absoluteBounds="5.25, 1.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/PublishStatDBDataContext/SAPDT_DOCSURFSTATUS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fbb82637-f38f-4861-9f25-2461de8a44be" absoluteBounds="5.265, 1.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

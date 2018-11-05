@@ -91,6 +91,13 @@
             font-size: 14px;
         }
 
+        .errorStatus {
+            margin-left: 5px;
+            margin-top: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 9px;
+        }
+
         .appHeader {
             margin-left: 8px;
             font-family: appHeaderFont;
@@ -155,8 +162,12 @@
                 return '';
         }
 
-        var docRenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
-            return '<div class="docName">' + value + "</div>";
+        var docRenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowData) {            
+            var rowRevision = rowData['revisionNo'];
+            if (rowRevision != undefined && rowRevision != '' && rowRevision != '-')
+                return '<div class="docName">' + value + "</div>";
+            else
+                return '<div class="docName">' + value + " <span class='label label-danger errorStatus'>No Revision#</span></div>";
         }
         
         $.ajax({
@@ -175,7 +186,8 @@
                         { name: 'docVersion' },
                         { name: 'docStatus' },
                         { name: 'revisionNo' },
-                        { name: 'revisionDate', type: 'date', format:'dd-MMM-yyyy' },
+                        { name: 'revisionDate', type: 'date', format: 'dd-MMM-yyyy' },
+                        { name: 'receiveDate', type: 'date', format: 'dd-MMM-yyyy' },
                         { name: 'distributionDate', type: 'date', format: 'dd-MMM-yyyy' },
                         { name: 'publishDate', type: 'date', format: 'dd-MMM-yyyy' }
                     ],
@@ -192,12 +204,13 @@
                     rowsheight: 50,
                     sortable: true,
                     columns: [
-                        { datafield: 'docNumber', text: 'Document', width: '27% ', renderer: columnRenderer, cellsrenderer: docRenderer, cellsalign: 'left' },
-                        { datafield: 'docPart', text: 'Part', width: '6%', renderer: columnRenderer, cellsalign: 'center' },
-                        { datafield: 'docVersion', text: 'Version', width: '8%', renderer: columnRenderer, cellsalign: 'center' },
-                        { datafield: 'docStatus', text: 'Status', width: '15%', renderer: columnRenderer, cellsrenderer: statusRenderer, cellsalign: 'left' },
+                        { datafield: 'docNumber', text: 'Document', width: '22% ', renderer: columnRenderer, cellsrenderer: docRenderer, cellsalign: 'left' },
+                        { datafield: 'docPart', text: 'Part', width: '5%', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'docVersion', text: 'Version', width: '5%', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'docStatus', text: 'Status', width: '12%', renderer: columnRenderer, cellsrenderer: statusRenderer, cellsalign: 'left' },
                         { datafield: 'revisionNo', text: 'Revision No.', width: '8%', renderer: columnRenderer, cellsalign: 'center' },
                         { datafield: 'revisionDate', text: 'Revision Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'receiveDate', text: 'Received Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
                         { datafield: 'distributionDate', text: 'Distribute Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
                         { datafield: 'publishDate', text: 'Published Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
                     ]

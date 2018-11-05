@@ -52,7 +52,18 @@ public class SAPHelper
                 }
                 catch (Exception)
                 {
-                    doc.revisionDate = s_revDate;                    
+                    doc.revisionDate = s_revDate;
+                }
+
+                String s_recvDate = row.GetString("RECVDATE");
+                try
+                {
+                    DateTime recvDate = DateTime.ParseExact(s_recvDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    doc.receiveDate = recvDate.ToString("dd-MMM-yyyy");
+                }
+                catch (Exception)
+                {
+                    doc.receiveDate = s_recvDate;                    
                 }                
                 result.Add(doc);
             }
