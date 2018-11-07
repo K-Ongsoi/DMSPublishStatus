@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="sapnco">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP\SAP_DotNetConnector3_Net40_x86\sapnco.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco_utils">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP\SAP_DotNetConnector3_Net40_x86\sapnco_utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
