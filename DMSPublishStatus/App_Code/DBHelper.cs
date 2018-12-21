@@ -112,7 +112,7 @@ public class DBHelper
         {
             if (currDoc.dms_revisionno == doc.revisionNo)
             {
-                currDoc.dms_status = doc.docStatus;
+                currDoc.dms_status = doc.docStatus;                
                 if (doc.docStatus != null && doc.docStatus.Equals("DB"))
                 {
                     if (currDoc.dms_distributedate == null)
@@ -175,6 +175,7 @@ public class DBHelper
                     docHist.hid_distributedate = currDoc.dms_distributedate;
                     docHist.hid_publisheddate = currDoc.dms_publisheddate;
                     docHist.hid_receivedate = currDoc.dms_receivedate;
+                    docHist.hid_remark = currDoc.dms_remark;
                     try
                     {
                         db.SAPDT_DOCSURFHISTs.InsertOnSubmit(docHist);
@@ -221,9 +222,9 @@ public class DBHelper
                 catch (Exception)
                 {
                     currDoc.dms_receivedate = null;
-                }
-
+                }                
                 currDoc.dms_publisheddate = null;
+                currDoc.dms_remark = "";                    
                 try
                 {
                     db.SubmitChanges();
@@ -241,8 +242,7 @@ public class DBHelper
             currDoc.dms_partno = doc.docPart;
             currDoc.dms_version = doc.docVersion;
             currDoc.dms_status = doc.docStatus;
-            currDoc.dms_revisionno = doc.revisionNo;            
-            
+            currDoc.dms_revisionno = doc.revisionNo;
             try
             {
                 DateTime distDate = DateTime.ParseExact(doc.distributionDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
@@ -298,6 +298,7 @@ public class DBHelper
             d.docVersion = doc.dms_version;
             d.docStatus = doc.dms_status;
             d.revisionNo = doc.dms_revisionno;
+            d.remark = (doc.dms_remark == null)? "" : doc.dms_remark;
             if (doc.dms_distributedate != null)
                 d.distributionDate = doc.dms_distributedate.Value.ToString("dd-MMM-yyyy");
             else
@@ -334,7 +335,7 @@ public class DBHelper
                         h.docVersion = hist.hid_version;
                         h.docStatus = hist.hid_status;
                         h.revisionNo = hist.hid_revisionno;
-
+                        h.remark = (hist.hid_remark==null)?"":hist.hid_remark;
                         if (hist.hid_distributedate != null)
                         {
                             h.distributionDate = hist.hid_distributedate.Value.ToString("dd-MMM-yyyy");

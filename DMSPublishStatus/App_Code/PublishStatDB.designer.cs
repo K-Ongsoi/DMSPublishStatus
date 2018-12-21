@@ -29,12 +29,12 @@ public partial class PublishStatDBDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void InsertSAPDT_DOCSURFHIST(SAPDT_DOCSURFHIST instance);
-  partial void UpdateSAPDT_DOCSURFHIST(SAPDT_DOCSURFHIST instance);
-  partial void DeleteSAPDT_DOCSURFHIST(SAPDT_DOCSURFHIST instance);
   partial void InsertSAPDT_DOCSURFSTATUS(SAPDT_DOCSURFSTATUS instance);
   partial void UpdateSAPDT_DOCSURFSTATUS(SAPDT_DOCSURFSTATUS instance);
   partial void DeleteSAPDT_DOCSURFSTATUS(SAPDT_DOCSURFSTATUS instance);
+  partial void InsertSAPDT_DOCSURFHIST(SAPDT_DOCSURFHIST instance);
+  partial void UpdateSAPDT_DOCSURFHIST(SAPDT_DOCSURFHIST instance);
+  partial void DeleteSAPDT_DOCSURFHIST(SAPDT_DOCSURFHIST instance);
   #endregion
 	
 	public PublishStatDBDataContext() : 
@@ -67,6 +67,14 @@ public partial class PublishStatDBDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
+	public System.Data.Linq.Table<SAPDT_DOCSURFSTATUS> SAPDT_DOCSURFSTATUS
+	{
+		get
+		{
+			return this.GetTable<SAPDT_DOCSURFSTATUS>();
+		}
+	}
+	
 	public System.Data.Linq.Table<SAPDT_DOCSURFHIST> SAPDT_DOCSURFHISTs
 	{
 		get
@@ -74,12 +82,282 @@ public partial class PublishStatDBDataContext : System.Data.Linq.DataContext
 			return this.GetTable<SAPDT_DOCSURFHIST>();
 		}
 	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SAPDT_DOCSURFSTATUS")]
+public partial class SAPDT_DOCSURFSTATUS : INotifyPropertyChanging, INotifyPropertyChanged
+{
 	
-	public System.Data.Linq.Table<SAPDT_DOCSURFSTATUS> SAPDT_DOCSURFSTATUS
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private string _dms_docno;
+	
+	private string _dms_partno;
+	
+	private string _dms_version;
+	
+	private string _dms_status;
+	
+	private string _dms_revisionno;
+	
+	private System.Nullable<System.DateTime> _dms_revisiondate;
+	
+	private System.Nullable<System.DateTime> _dms_distributedate;
+	
+	private System.Nullable<System.DateTime> _dms_publisheddate;
+	
+	private System.Nullable<System.DateTime> _dms_receivedate;
+	
+	private string _dms_remark;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ondms_docnoChanging(string value);
+    partial void Ondms_docnoChanged();
+    partial void Ondms_partnoChanging(string value);
+    partial void Ondms_partnoChanged();
+    partial void Ondms_versionChanging(string value);
+    partial void Ondms_versionChanged();
+    partial void Ondms_statusChanging(string value);
+    partial void Ondms_statusChanged();
+    partial void Ondms_revisionnoChanging(string value);
+    partial void Ondms_revisionnoChanged();
+    partial void Ondms_revisiondateChanging(System.Nullable<System.DateTime> value);
+    partial void Ondms_revisiondateChanged();
+    partial void Ondms_distributedateChanging(System.Nullable<System.DateTime> value);
+    partial void Ondms_distributedateChanged();
+    partial void Ondms_publisheddateChanging(System.Nullable<System.DateTime> value);
+    partial void Ondms_publisheddateChanged();
+    partial void Ondms_receivedateChanging(System.Nullable<System.DateTime> value);
+    partial void Ondms_receivedateChanged();
+    partial void Ondms_remarkChanging(string value);
+    partial void Ondms_remarkChanged();
+    #endregion
+	
+	public SAPDT_DOCSURFSTATUS()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_docno", DbType="VarChar(64) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string dms_docno
 	{
 		get
 		{
-			return this.GetTable<SAPDT_DOCSURFSTATUS>();
+			return this._dms_docno;
+		}
+		set
+		{
+			if ((this._dms_docno != value))
+			{
+				this.Ondms_docnoChanging(value);
+				this.SendPropertyChanging();
+				this._dms_docno = value;
+				this.SendPropertyChanged("dms_docno");
+				this.Ondms_docnoChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_partno", DbType="VarChar(3) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string dms_partno
+	{
+		get
+		{
+			return this._dms_partno;
+		}
+		set
+		{
+			if ((this._dms_partno != value))
+			{
+				this.Ondms_partnoChanging(value);
+				this.SendPropertyChanging();
+				this._dms_partno = value;
+				this.SendPropertyChanged("dms_partno");
+				this.Ondms_partnoChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_version", DbType="VarChar(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string dms_version
+	{
+		get
+		{
+			return this._dms_version;
+		}
+		set
+		{
+			if ((this._dms_version != value))
+			{
+				this.Ondms_versionChanging(value);
+				this.SendPropertyChanging();
+				this._dms_version = value;
+				this.SendPropertyChanged("dms_version");
+				this.Ondms_versionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_status", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+	public string dms_status
+	{
+		get
+		{
+			return this._dms_status;
+		}
+		set
+		{
+			if ((this._dms_status != value))
+			{
+				this.Ondms_statusChanging(value);
+				this.SendPropertyChanging();
+				this._dms_status = value;
+				this.SendPropertyChanged("dms_status");
+				this.Ondms_statusChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_revisionno", DbType="VarChar(4)")]
+	public string dms_revisionno
+	{
+		get
+		{
+			return this._dms_revisionno;
+		}
+		set
+		{
+			if ((this._dms_revisionno != value))
+			{
+				this.Ondms_revisionnoChanging(value);
+				this.SendPropertyChanging();
+				this._dms_revisionno = value;
+				this.SendPropertyChanged("dms_revisionno");
+				this.Ondms_revisionnoChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_revisiondate", DbType="Date")]
+	public System.Nullable<System.DateTime> dms_revisiondate
+	{
+		get
+		{
+			return this._dms_revisiondate;
+		}
+		set
+		{
+			if ((this._dms_revisiondate != value))
+			{
+				this.Ondms_revisiondateChanging(value);
+				this.SendPropertyChanging();
+				this._dms_revisiondate = value;
+				this.SendPropertyChanged("dms_revisiondate");
+				this.Ondms_revisiondateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_distributedate", DbType="Date")]
+	public System.Nullable<System.DateTime> dms_distributedate
+	{
+		get
+		{
+			return this._dms_distributedate;
+		}
+		set
+		{
+			if ((this._dms_distributedate != value))
+			{
+				this.Ondms_distributedateChanging(value);
+				this.SendPropertyChanging();
+				this._dms_distributedate = value;
+				this.SendPropertyChanged("dms_distributedate");
+				this.Ondms_distributedateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_publisheddate", DbType="Date")]
+	public System.Nullable<System.DateTime> dms_publisheddate
+	{
+		get
+		{
+			return this._dms_publisheddate;
+		}
+		set
+		{
+			if ((this._dms_publisheddate != value))
+			{
+				this.Ondms_publisheddateChanging(value);
+				this.SendPropertyChanging();
+				this._dms_publisheddate = value;
+				this.SendPropertyChanged("dms_publisheddate");
+				this.Ondms_publisheddateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_receivedate", DbType="Date")]
+	public System.Nullable<System.DateTime> dms_receivedate
+	{
+		get
+		{
+			return this._dms_receivedate;
+		}
+		set
+		{
+			if ((this._dms_receivedate != value))
+			{
+				this.Ondms_receivedateChanging(value);
+				this.SendPropertyChanging();
+				this._dms_receivedate = value;
+				this.SendPropertyChanged("dms_receivedate");
+				this.Ondms_receivedateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_remark", DbType="VarChar(200)")]
+	public string dms_remark
+	{
+		get
+		{
+			return this._dms_remark;
+		}
+		set
+		{
+			if ((this._dms_remark != value))
+			{
+				this.Ondms_remarkChanging(value);
+				this.SendPropertyChanging();
+				this._dms_remark = value;
+				this.SendPropertyChanged("dms_remark");
+				this.Ondms_remarkChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -108,6 +386,8 @@ public partial class SAPDT_DOCSURFHIST : INotifyPropertyChanging, INotifyPropert
 	
 	private System.Nullable<System.DateTime> _hid_receivedate;
 	
+	private string _hid_remark;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -130,6 +410,8 @@ public partial class SAPDT_DOCSURFHIST : INotifyPropertyChanging, INotifyPropert
     partial void Onhid_publisheddateChanged();
     partial void Onhid_receivedateChanging(System.Nullable<System.DateTime> value);
     partial void Onhid_receivedateChanged();
+    partial void Onhid_remarkChanging(string value);
+    partial void Onhid_remarkChanged();
     #endregion
 	
 	public SAPDT_DOCSURFHIST()
@@ -317,256 +599,22 @@ public partial class SAPDT_DOCSURFHIST : INotifyPropertyChanging, INotifyPropert
 		}
 	}
 	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SAPDT_DOCSURFSTATUS")]
-public partial class SAPDT_DOCSURFSTATUS : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private string _dms_docno;
-	
-	private string _dms_partno;
-	
-	private string _dms_version;
-	
-	private string _dms_status;
-	
-	private string _dms_revisionno;
-	
-	private System.Nullable<System.DateTime> _dms_revisiondate;
-	
-	private System.Nullable<System.DateTime> _dms_distributedate;
-	
-	private System.Nullable<System.DateTime> _dms_publisheddate;
-	
-	private System.Nullable<System.DateTime> _dms_receivedate;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Ondms_docnoChanging(string value);
-    partial void Ondms_docnoChanged();
-    partial void Ondms_partnoChanging(string value);
-    partial void Ondms_partnoChanged();
-    partial void Ondms_versionChanging(string value);
-    partial void Ondms_versionChanged();
-    partial void Ondms_statusChanging(string value);
-    partial void Ondms_statusChanged();
-    partial void Ondms_revisionnoChanging(string value);
-    partial void Ondms_revisionnoChanged();
-    partial void Ondms_revisiondateChanging(System.Nullable<System.DateTime> value);
-    partial void Ondms_revisiondateChanged();
-    partial void Ondms_distributedateChanging(System.Nullable<System.DateTime> value);
-    partial void Ondms_distributedateChanged();
-    partial void Ondms_publisheddateChanging(System.Nullable<System.DateTime> value);
-    partial void Ondms_publisheddateChanged();
-    partial void Ondms_receivedateChanging(System.Nullable<System.DateTime> value);
-    partial void Ondms_receivedateChanged();
-    #endregion
-	
-	public SAPDT_DOCSURFSTATUS()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_docno", DbType="VarChar(64) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string dms_docno
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_hid_remark", DbType="VarChar(200)")]
+	public string hid_remark
 	{
 		get
 		{
-			return this._dms_docno;
+			return this._hid_remark;
 		}
 		set
 		{
-			if ((this._dms_docno != value))
+			if ((this._hid_remark != value))
 			{
-				this.Ondms_docnoChanging(value);
+				this.Onhid_remarkChanging(value);
 				this.SendPropertyChanging();
-				this._dms_docno = value;
-				this.SendPropertyChanged("dms_docno");
-				this.Ondms_docnoChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_partno", DbType="VarChar(3) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string dms_partno
-	{
-		get
-		{
-			return this._dms_partno;
-		}
-		set
-		{
-			if ((this._dms_partno != value))
-			{
-				this.Ondms_partnoChanging(value);
-				this.SendPropertyChanging();
-				this._dms_partno = value;
-				this.SendPropertyChanged("dms_partno");
-				this.Ondms_partnoChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_version", DbType="VarChar(2) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string dms_version
-	{
-		get
-		{
-			return this._dms_version;
-		}
-		set
-		{
-			if ((this._dms_version != value))
-			{
-				this.Ondms_versionChanging(value);
-				this.SendPropertyChanging();
-				this._dms_version = value;
-				this.SendPropertyChanged("dms_version");
-				this.Ondms_versionChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_status", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
-	public string dms_status
-	{
-		get
-		{
-			return this._dms_status;
-		}
-		set
-		{
-			if ((this._dms_status != value))
-			{
-				this.Ondms_statusChanging(value);
-				this.SendPropertyChanging();
-				this._dms_status = value;
-				this.SendPropertyChanged("dms_status");
-				this.Ondms_statusChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_revisionno", DbType="VarChar(4)")]
-	public string dms_revisionno
-	{
-		get
-		{
-			return this._dms_revisionno;
-		}
-		set
-		{
-			if ((this._dms_revisionno != value))
-			{
-				this.Ondms_revisionnoChanging(value);
-				this.SendPropertyChanging();
-				this._dms_revisionno = value;
-				this.SendPropertyChanged("dms_revisionno");
-				this.Ondms_revisionnoChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_revisiondate", DbType="Date")]
-	public System.Nullable<System.DateTime> dms_revisiondate
-	{
-		get
-		{
-			return this._dms_revisiondate;
-		}
-		set
-		{
-			if ((this._dms_revisiondate != value))
-			{
-				this.Ondms_revisiondateChanging(value);
-				this.SendPropertyChanging();
-				this._dms_revisiondate = value;
-				this.SendPropertyChanged("dms_revisiondate");
-				this.Ondms_revisiondateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_distributedate", DbType="Date")]
-	public System.Nullable<System.DateTime> dms_distributedate
-	{
-		get
-		{
-			return this._dms_distributedate;
-		}
-		set
-		{
-			if ((this._dms_distributedate != value))
-			{
-				this.Ondms_distributedateChanging(value);
-				this.SendPropertyChanging();
-				this._dms_distributedate = value;
-				this.SendPropertyChanged("dms_distributedate");
-				this.Ondms_distributedateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_publisheddate", DbType="Date")]
-	public System.Nullable<System.DateTime> dms_publisheddate
-	{
-		get
-		{
-			return this._dms_publisheddate;
-		}
-		set
-		{
-			if ((this._dms_publisheddate != value))
-			{
-				this.Ondms_publisheddateChanging(value);
-				this.SendPropertyChanging();
-				this._dms_publisheddate = value;
-				this.SendPropertyChanged("dms_publisheddate");
-				this.Ondms_publisheddateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dms_receivedate", DbType="Date")]
-	public System.Nullable<System.DateTime> dms_receivedate
-	{
-		get
-		{
-			return this._dms_receivedate;
-		}
-		set
-		{
-			if ((this._dms_receivedate != value))
-			{
-				this.Ondms_receivedateChanging(value);
-				this.SendPropertyChanging();
-				this._dms_receivedate = value;
-				this.SendPropertyChanged("dms_receivedate");
-				this.Ondms_receivedateChanged();
+				this._hid_remark = value;
+				this.SendPropertyChanged("hid_remark");
+				this.Onhid_remarkChanged();
 			}
 		}
 	}

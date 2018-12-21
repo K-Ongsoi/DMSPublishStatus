@@ -1,18 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SAPDT" Class="PublishStatDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=acm-ctssql01.dt.thaiairways.co.th;Initial Catalog=SAPDT;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SAPDTConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.SAPDT_DOCSURFHIST" Member="SAPDT_DOCSURFHISTs">
-    <Type Name="SAPDT_DOCSURFHIST">
-      <Column Name="hid_docno" Type="System.String" DbType="VarChar(64) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="hid_partno" Type="System.String" DbType="VarChar(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="hid_version" Type="System.String" DbType="VarChar(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="hid_status" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="hid_revisionno" Type="System.String" DbType="VarChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="hid_revisiondate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="hid_distributedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="hid_publisheddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="hid_receivedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.SAPDT_DOCSURFSTATUS" Member="SAPDT_DOCSURFSTATUS">
     <Type Name="SAPDT_DOCSURFSTATUS">
       <Column Name="dms_docno" Type="System.String" DbType="VarChar(64) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -24,6 +11,21 @@
       <Column Name="dms_distributedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="dms_publisheddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="dms_receivedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dms_remark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SAPDT_DOCSURFHIST" Member="SAPDT_DOCSURFHISTs">
+    <Type Name="SAPDT_DOCSURFHIST">
+      <Column Name="hid_docno" Type="System.String" DbType="VarChar(64) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hid_partno" Type="System.String" DbType="VarChar(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hid_version" Type="System.String" DbType="VarChar(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hid_status" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="hid_revisionno" Type="System.String" DbType="VarChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hid_revisiondate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="hid_distributedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="hid_publisheddate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="hid_receivedate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="hid_remark" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

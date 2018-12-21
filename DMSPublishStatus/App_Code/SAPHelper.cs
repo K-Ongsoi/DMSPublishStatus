@@ -32,7 +32,7 @@ public class SAPHelper
                 doc.docNumber = row.GetString("DOKNR");
                 doc.docPart = row.GetString("DOKTL");
                 doc.docVersion = row.GetString("DOKVR");
-                doc.docStatus = row.GetString("DOKST");
+                doc.docStatus = row.GetString("DOKST");                
                 String s_distDate = row.GetString("DISTDATE");
                 try
                 {

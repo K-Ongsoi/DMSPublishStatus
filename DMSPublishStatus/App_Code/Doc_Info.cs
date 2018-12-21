@@ -18,4 +18,5 @@ public class Doc_Info
     public String receiveDate;
     public String distributionDate;
     public String publishDate;
+    public String remark;
 }

@@ -202,6 +202,12 @@
                 return '';
         }
 
+        var remarkRenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
+            if (value && value != "") {
+                return '<div style="text-align:left; margin-left: 4px; margin-top: 16px; font-style: italic; font-weight: 600; color: #e53935;">' + value + '</div>';
+            }
+        }
+
         var docRenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowData) {            
             var rowRevision = rowData['revisionNo'];
             if (rowRevision != undefined && rowRevision != '' && rowRevision != '-')
@@ -229,7 +235,8 @@
                         { name: 'revisionDate', type: 'date', format: 'dd-MMM-yyyy' },
                         { name: 'receiveDate', type: 'date', format: 'dd-MMM-yyyy' },
                         { name: 'distributionDate', type: 'date', format: 'dd-MMM-yyyy' },
-                        { name: 'publishDate', type: 'date', format: 'dd-MMM-yyyy' }
+                        { name: 'publishDate', type: 'date', format: 'dd-MMM-yyyy' },
+                        { name: 'remark' }
                     ],
                     localdata: jsonData
                 };
@@ -244,15 +251,16 @@
                     rowsheight: 50,
                     sortable: true,
                     columns: [
-                        { datafield: 'docNumber', text: 'Document', width: '22% ', renderer: columnRenderer, cellsrenderer: docRenderer, cellsalign: 'left' },
+                        { datafield: 'docNumber', text: 'Document', width: '18% ', renderer: columnRenderer, cellsrenderer: docRenderer, cellsalign: 'left' },
                         { datafield: 'docPart', text: 'Part', width: '5%', renderer: columnRenderer, cellsalign: 'center' },
                         { datafield: 'docVersion', text: 'Version', width: '5%', renderer: columnRenderer, cellsalign: 'center' },
                         { datafield: 'docStatus', text: 'Status', width: '12%', renderer: columnRenderer, cellsrenderer: statusRenderer, cellsalign: 'left' },
                         { datafield: 'revisionNo', text: 'Revision No.', width: '8%', renderer: columnRenderer, cellsalign: 'center' },
-                        { datafield: 'receiveDate', text: 'Received Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
-                        { datafield: 'revisionDate', text: 'Revision Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },                        
-                        { datafield: 'distributionDate', text: 'Distribute Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
-                        { datafield: 'publishDate', text: 'Published Date', width: '12%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'receiveDate', text: 'Received Date', width: '10%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'revisionDate', text: 'Revision Date', width: '10%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },                        
+                        { datafield: 'distributionDate', text: 'Distribute Date', width: '10%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'publishDate', text: 'Published Date', width: '10%', cellsformat: 'dd-MMM-yyyy', renderer: columnRenderer, cellsalign: 'center' },
+                        { datafield: 'remark', text: 'Remark', width: '12%', renderer: columnRenderer, cellsrenderer: remarkRenderer, cellsalign: 'left' }
                     ]
                 });
                 document.getElementById('loading').style.display = "none";
